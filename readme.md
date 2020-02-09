@@ -1,7 +1,8 @@
-# Postman Yaddress
+# Postman Yaddress [![Build Status](https://travis-ci.com/bamanczak/postman-yaddress.svg?branch=master)](https://travis-ci.com/bamanczak/postman-yaddress)
 The goal of this project was to implement automated API tests using Postman and to make them run using TravisCI. YAddress was chosen as a sample API for testing.
 
 ## How to run tests?
+
 ### Using Postman App
 In order to run tests using Postman App please make sure you have the app installed: https://www.postman.com/downloads/
 Then please follow below steps:
