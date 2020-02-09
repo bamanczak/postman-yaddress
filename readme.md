@@ -35,7 +35,7 @@ Tests are executed automatically after each commit to this repository. The build
 UserKey is stored as a global variable. If you wish to use your UserKey in tests, please provide it in the global variables
 
 ### URL
-URL to YAddress server is stored in the Environment variable (visible in file: YAddress_Prod.postman_environment). If you wish to test using different server please create a new collection environment or change the `baseURL` variable in the environment `Prod`
+URL to YAddress server is stored in the Environment variable (visible in file: `YAddress_Prod.postman_environment`). If you wish to test using different server please create a new collection environment or change the `baseURL` variable in the environment `Prod`
 
 ### Test data
 Test data (AddressLine1, AddressLine2 and all details about correct target address, i.e. White House in Washington DC) are stored in the collection variables (visible if you right-click on the collection and click `edit`)
@@ -45,8 +45,8 @@ All reusable scripts (like verification of all the details of the address) are d
 
 ## TODO
 1. Increase Test coverage
-  1. Define test data for Error Code `5 - Ambiguous street name. More than one street matches the search address with equal accuracy.`
-  1. Add tests for all `GeoPrecision` outputs (0-5)
-  1. Consider adding more tests for automatic typos and common errors correction
-  1. Consider launching tests on a different environment and, if possible how to test error codes related to the server malfunction (1, 6, 7)
+   1. Define test data for Error Code `5 - Ambiguous street name. More than one street matches the search address with equal accuracy.`
+   1. Add tests for all `GeoPrecision` outputs (0-5)
+   1. Consider adding more tests for automatic typos and common errors correction
+   1. Consider launching tests on a different environment and, if possible how to test error codes related to the server malfunction (1, 6, 7)
 1. Consider changing the way reusable scripts are defined: currently in the `Pre-requests Scripts` which causes the code to be executed before every single request.
