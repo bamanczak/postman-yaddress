@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- "10"
+
+install:
+- npm install newman
+
+before_script:
+- node --version
+- npm --version
+- node_modules/.bin/newman --version
+
+script:
+- newman run YAddress.postman_collection.json -e Prod.postman_environment.json -g YAddress.postman_globals.json
