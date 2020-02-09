@@ -1,0 +1,861 @@
+{
+	"info": {
+		"_postman_id": "bcc320e5-03e5-48d0-a2e1-f6fa723881b2",
+		"name": "YAddress",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Valid address with no errors",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed7f599e-3ee1-4a58-9453-40fd69e8676b",
+						"exec": [
+							"eval(pm.environment.get(\"validResponse\"))();\r",
+							"eval(pm.environment.get(\"noErrorCode\"))();\r",
+							"eval(pm.environment.get(\"validateAddress\"))();"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a0c82e76-1f0c-44c3-b475-996d482d6bdc",
+						"exec": [
+							"var validResponse = () => {",
+							"    pm.test(\"response must be valid and have a body\", function () {",
+							"        pm.response.to.be.ok;",
+							"        pm.response.to.be.json;",
+							"    });",
+							"}",
+							"",
+							"pm.environment.set(\"validResponse\", validResponse.toString());",
+							"",
+							"var noErrorCode = () => {",
+							"    pm.test(\"response must reuturn ErrorCode: 0-No error and blank ErrorMessage\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(jsonData.ErrorCode).to.eql(0);",
+							"        pm.expect(jsonData.ErrorMessage).to.eql(\"\");",
+							"    });",
+							"}",
+							"",
+							"pm.environment.set(\"noErrorCode\", noErrorCode.toString());",
+							"",
+							"var validateAddress = () => {",
+							"    var jsonData = pm.response.json();",
+							"",
+							"    pm.test(\"address number must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressNumber\");",
+							"        pm.expect(jsonData.Number).to.eql(value);",
+							"    });",
+							"    ",
+							"    pm.test(\"address PreDir must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressPreDir\");",
+							"        pm.expect(jsonData.PreDir).to.eql(value);",
+							"    });",
+							"    ",
+							"    pm.test(\"address Street must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressStreet\");",
+							"        pm.expect(jsonData.Street).to.eql(value);",
+							"    });",
+							"    ",
+							"    pm.test(\"address Suffix must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressSuffix\");",
+							"        pm.expect(jsonData.Suffix).to.eql(value);",
+							"    });",
+							"",
+							"    pm.test(\"address PostDir must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressPostDir\");",
+							"        pm.expect(jsonData.PostDir).to.eql(value);",
+							"    });",
+							"",
+							"    pm.test(\"address Sec must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressSec\");",
+							"        pm.expect(jsonData.Sec).to.eql(value);",
+							"    });",
+							"",
+							"    pm.test(\"address SecNumber must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressSecNumber\");",
+							"        pm.expect(jsonData.SecNumber).to.eql(value);",
+							"    });",
+							"",
+							"    pm.test(\"address City must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressCity\");",
+							"        pm.expect(jsonData.City).to.eql(value);",
+							"    });",
+							"",
+							"    pm.test(\"address State must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressState\");",
+							"        pm.expect(jsonData.State).to.eql(value);",
+							"    });",
+							"",
+							"    pm.test(\"address Zip must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressZip\");",
+							"        pm.expect(jsonData.Zip).to.eql(value);",
+							"    });",
+							"",
+							"    pm.test(\"address Zip4 must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressZip4\");",
+							"        pm.expect(jsonData.Zip4).to.eql(value);",
+							"    });",
+							"",
+							"    pm.test(\"address County must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressCounty\");",
+							"        pm.expect(jsonData.County).to.eql(value);",
+							"    });",
+							"",
+							"    pm.test(\"address StateFP must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressStateFP\");",
+							"        pm.expect(jsonData.StateFP).to.eql(value);",
+							"    });",
+							"    ",
+							"    pm.test(\"address CountyFP must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressCountyFP\");",
+							"        pm.expect(jsonData.CountyFP).to.eql(value);",
+							"    });",
+							"",
+							"    pm.test(\"address CensusTract must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressCensusTract\");",
+							"        pm.expect(jsonData.CensusTract).to.eql(value);",
+							"    });",
+							"",
+							"    pm.test(\"address CensusBlock must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressCensusBlock\");",
+							"        pm.expect(jsonData.CensusBlock).to.eql(value);",
+							"    });",
+							"",
+							"    pm.test(\"address Latitude must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressLatitude\");",
+							"        pm.expect(jsonData.Latitude).to.eql(Number(value));",
+							"    });",
+							"",
+							"    pm.test(\"address Longitude must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressLongitude\");",
+							"        pm.expect(jsonData.Longitude).to.eql(Number(value));",
+							"    });",
+							"",
+							"    pm.test(\"address GeoPrecision must be correct\", function () {",
+							"        var value = pm.globals.get(\"addressGeoPrecision\");",
+							"        pm.expect(jsonData.GeoPrecision).to.eql(Number(value));",
+							"    });",
+							"}",
+							"",
+							"pm.environment.set(\"validateAddress\", validateAddress.toString());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}?AddressLine1={{ValidAddressLine1}}&AddressLine2={{ValidAddressLine2}}&UserKey={{UserKey}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "AddressLine1",
+							"value": "{{ValidAddressLine1}}"
+						},
+						{
+							"key": "AddressLine2",
+							"value": "{{ValidAddressLine2}}"
+						},
+						{
+							"key": "UserKey",
+							"value": "{{UserKey}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid address with no errors - XML",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed7f599e-3ee1-4a58-9453-40fd69e8676b",
+						"exec": [
+							"pm.test(\"response must be valid and not have json a body\", function () {\r",
+							"     pm.response.to.be.ok;\r",
+							"     pm.response.to.not.be.json;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"response must reuturn ErrorCode: 0-No error and blank ErrorMessage\", function () {\r",
+							"    var jsonData = xml2Json(responseBody);\r",
+							"    pm.expect(jsonData.Address.ErrorCode).to.eql(\"0\");\r",
+							"    pm.expect(jsonData.Address.ErrorMessage).to.eql(\"\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}?AddressLine1=1600 Pennsylvania Avenue NW&AddressLine2=Washington, DC 20500&UserKey",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "AddressLine1",
+							"value": "1600 Pennsylvania Avenue NW"
+						},
+						{
+							"key": "AddressLine2",
+							"value": "Washington, DC 20500"
+						},
+						{
+							"key": "UserKey",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "State is missing in Address Line 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed7f599e-3ee1-4a58-9453-40fd69e8676b",
+						"exec": [
+							"eval(pm.environment.get(\"validResponse\"))();\r",
+							"eval(pm.environment.get(\"noErrorCode\"))();\r",
+							"eval(pm.environment.get(\"validateAddress\"))();"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a0c82e76-1f0c-44c3-b475-996d482d6bdc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}?AddressLine1=1600 Pennsylvania Avenue NW&AddressLine2=Washington, 20500&UserKey={{UserKey}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "AddressLine1",
+							"value": "1600 Pennsylvania Avenue NW"
+						},
+						{
+							"key": "AddressLine2",
+							"value": "Washington, 20500"
+						},
+						{
+							"key": "UserKey",
+							"value": "{{UserKey}}"
+						}
+					]
+				},
+				"description": "Returns valid address if State is missing in Address Line 2"
+			},
+			"response": []
+		},
+		{
+			"name": "City has a typo in Address Line 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed7f599e-3ee1-4a58-9453-40fd69e8676b",
+						"exec": [
+							"eval(pm.environment.get(\"validResponse\"))();\r",
+							"eval(pm.environment.get(\"noErrorCode\"))();\r",
+							"eval(pm.environment.get(\"validateAddress\"))();"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a0c82e76-1f0c-44c3-b475-996d482d6bdc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}?AddressLine1={{ValidAddressLine1}}&AddressLine2=Waingtn, DC 20500&UserKey={{UserKey}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "AddressLine1",
+							"value": "{{ValidAddressLine1}}"
+						},
+						{
+							"key": "AddressLine2",
+							"value": "Waingtn, DC 20500"
+						},
+						{
+							"key": "UserKey",
+							"value": "{{UserKey}}"
+						}
+					]
+				},
+				"description": "Returns valid address if City has a typo in Address Line 2"
+			},
+			"response": []
+		},
+		{
+			"name": "City is missing in Address Line 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed7f599e-3ee1-4a58-9453-40fd69e8676b",
+						"exec": [
+							"eval(pm.environment.get(\"validResponse\"))();\r",
+							"eval(pm.environment.get(\"noErrorCode\"))();\r",
+							"eval(pm.environment.get(\"validateAddress\"))();"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a0c82e76-1f0c-44c3-b475-996d482d6bdc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}?AddressLine1={{ValidAddressLine1}}&AddressLine2=DC 20500&UserKey={{UserKey}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "AddressLine1",
+							"value": "{{ValidAddressLine1}}"
+						},
+						{
+							"key": "AddressLine2",
+							"value": "DC 20500"
+						},
+						{
+							"key": "UserKey",
+							"value": "{{UserKey}}"
+						}
+					]
+				},
+				"description": "Returns valid address if City is missing in Address Line 2 Copy"
+			},
+			"response": []
+		},
+		{
+			"name": "Error 2: Input address was supplied in an invalid format - no Zip or State",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed7f599e-3ee1-4a58-9453-40fd69e8676b",
+						"exec": [
+							"pm.test(\"response must return ErrorCode: 2-Input address was supplied in an invalid format.\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.ErrorCode).to.eql(2);\r",
+							"    pm.expect(jsonData.ErrorMessage).to.eql(\"Invalid address: no Zip or State given\");\r",
+							"});\r",
+							"\r",
+							"eval(pm.environment.get(\"validResponse\"))();"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a0c82e76-1f0c-44c3-b475-996d482d6bdc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/xml",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}?AddressLine1={{ValidAddressLine2}}&AddressLine2={{ValidAddressLine1}}&UserKey={{UserKey}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "AddressLine1",
+							"value": "{{ValidAddressLine2}}",
+							"description": "input swapped with Valid Address2"
+						},
+						{
+							"key": "AddressLine2",
+							"value": "{{ValidAddressLine1}}",
+							"description": "input swapped with Valid Address1"
+						},
+						{
+							"key": "UserKey",
+							"value": "{{UserKey}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Error 2: Input address was supplied in an invalid format - invalid street line",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed7f599e-3ee1-4a58-9453-40fd69e8676b",
+						"exec": [
+							"pm.test(\"response must return ErrorCode: 2-Input address was supplied in an invalid format.\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.ErrorCode).to.eql(2);\r",
+							"    pm.expect(jsonData.ErrorMessage).to.eql(\"Invalid address: invalid street address line \");\r",
+							"});\r",
+							"\r",
+							"eval(pm.environment.get(\"validResponse\"))();"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a0c82e76-1f0c-44c3-b475-996d482d6bdc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/xml",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}?AddressLine1=Washington &AddressLine2=Washington, DC 20016&UserKey={{UserKey}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "AddressLine1",
+							"value": "Washington ",
+							"description": "input swapped with Valid Address2"
+						},
+						{
+							"key": "AddressLine2",
+							"value": "Washington, DC 20016",
+							"description": "input swapped with Valid Address1"
+						},
+						{
+							"key": "UserKey",
+							"value": "{{UserKey}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Error 3: Specified street was not found in the ZIP code provided or in any ZIP code of the city-state",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed7f599e-3ee1-4a58-9453-40fd69e8676b",
+						"exec": [
+							"pm.test(\"response must return ErrorCode: 3-Specified street was not found in the ZIP code provided or in any ZIP code of the city-state\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.ErrorCode).to.eql(3);\r",
+							"    pm.expect(jsonData.ErrorMessage).to.eql(\"Street not found in city/state\");\r",
+							"});\r",
+							"\r",
+							"eval(pm.environment.get(\"validResponse\"))();"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a0c82e76-1f0c-44c3-b475-996d482d6bdc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}?AddressLine1=1 Pennsylvania Avenue NW&AddressLine2=Washington,  90210&UserKey={{UserKey}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "AddressLine1",
+							"value": "1 Pennsylvania Avenue NW"
+						},
+						{
+							"key": "AddressLine2",
+							"value": "Washington,  90210"
+						},
+						{
+							"key": "UserKey",
+							"value": "{{UserKey}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Error 4: City is not found in the state.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed7f599e-3ee1-4a58-9453-40fd69e8676b",
+						"exec": [
+							"pm.test(\"response must return ErrorCode: 4-City not found in state\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.ErrorCode).to.eql(4);\r",
+							"    pm.expect(jsonData.ErrorMessage).to.eql(\"City not found in state\");\r",
+							"});\r",
+							"\r",
+							"eval(pm.environment.get(\"validResponse\"))();"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a0c82e76-1f0c-44c3-b475-996d482d6bdc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}?AddressLine1=1600 Pennsylvania Avenue NW&AddressLine2=New York, DC 90210&UserKey={{UserKey}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "AddressLine1",
+							"value": "1600 Pennsylvania Avenue NW"
+						},
+						{
+							"key": "AddressLine2",
+							"value": "New York, DC 90210"
+						},
+						{
+							"key": "UserKey",
+							"value": "{{UserKey}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Error 8: No such house number in the street",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed7f599e-3ee1-4a58-9453-40fd69e8676b",
+						"exec": [
+							"pm.test(\"response must return ErrorCode: 8-No such house number in the street\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.ErrorCode).to.eql(8);\r",
+							"    pm.expect(jsonData.ErrorMessage).to.eql(\"No such house number in the street\");\r",
+							"});\r",
+							"\r",
+							"eval(pm.environment.get(\"validResponse\"))();"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a0c82e76-1f0c-44c3-b475-996d482d6bdc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}?AddressLine1=1 Pennsylvania Avenue NW&AddressLine2=Washington, DC 20500\n&UserKey={{UserKey}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"query": [
+						{
+							"key": "AddressLine1",
+							"value": "1 Pennsylvania Avenue NW"
+						},
+						{
+							"key": "AddressLine2",
+							"value": "Washington, DC 20500\n"
+						},
+						{
+							"key": "UserKey",
+							"value": "{{UserKey}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

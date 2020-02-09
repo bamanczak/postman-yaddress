@@ -1,0 +1,119 @@
+{
+	"id": "146e52f0-fd32-4814-8e58-8a3c0f4d5eb7",
+	"values": [
+		{
+			"key": "addressPreDir",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "addressStreet",
+			"value": "PENNSYLVANIA",
+			"enabled": true
+		},
+		{
+			"key": "addressSuffix",
+			"value": "AVE",
+			"enabled": true
+		},
+		{
+			"key": "addressPostDir",
+			"value": "NW",
+			"enabled": true
+		},
+		{
+			"key": "addressSec",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "addressSecNumber",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "addressCity",
+			"value": "WASHINGTON",
+			"enabled": true
+		},
+		{
+			"key": "addressState",
+			"value": "DC",
+			"enabled": true
+		},
+		{
+			"key": "addressZip",
+			"value": "20500",
+			"enabled": true
+		},
+		{
+			"key": "addressZip4",
+			"value": "0005",
+			"enabled": true
+		},
+		{
+			"key": "addressCounty",
+			"value": "DISTRICT OF COLUMBIA",
+			"enabled": true
+		},
+		{
+			"key": "addressStateFP",
+			"value": "11",
+			"enabled": true
+		},
+		{
+			"key": "addressCountyFP",
+			"value": "001",
+			"enabled": true
+		},
+		{
+			"key": "addressCensusTract",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "addressCensusBlock",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "addressLatitude",
+			"value": "38.909641",
+			"enabled": true
+		},
+		{
+			"key": "addressLongitude",
+			"value": "-77.018933",
+			"enabled": true
+		},
+		{
+			"key": "addressGeoPrecision",
+			"value": "2",
+			"enabled": true
+		},
+		{
+			"key": "ValidAddressLine1",
+			"value": "1600 Pennsylvania Avenue NW",
+			"enabled": true
+		},
+		{
+			"key": "ValidAddressLine2",
+			"value": "Washington, DC 20500",
+			"enabled": true
+		},
+		{
+			"key": "UserKey",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "addressNumber",
+			"value": "1600",
+			"enabled": true
+		}
+	],
+	"name": "My Workspace Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2020-02-09T15:36:55.491Z",
+	"_postman_exported_using": "Postman/7.17.0"
+}
