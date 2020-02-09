@@ -11,4 +11,4 @@ before_script:
 - node_modules/.bin/newman --version
 
 script:
-- newman run YAddress.postman_collection.json -e Prod.postman_environment.json -g YAddress.postman_globals.json
+- newman run YAddress.postman_collection.json -e YAddress_Prod.postman_environment.json -g YAddress.postman_globals.json
